@@ -1,17 +1,27 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-import { Button } from './components/ui/button'
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import LoginForm from './Auth/login/Login'
+import SignUp from './Auth/signup/SignUp';
 
 function App() {
-  const [count, setCount] = useState(0)
-
+  const Approuter=createBrowserRouter([
+    {
+      path:'/student/login',
+      element:<LoginForm/>
+    },
+    {
+      path:'/student/signUp',
+      element:<SignUp/>
+    },
+    {
+      path:'/student/dashboard',
+      element:<SignUp/>
+    }
+  ])
   return (
-    <>
-      <Button variant="destructive">Click me</Button>
-    </>
+      <>
+        <RouterProvider router={Approuter}/>
+      </>
   )
 }
 
-export default App
+export default App;
