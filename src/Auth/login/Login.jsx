@@ -119,7 +119,7 @@ export default function LoginPage() {
             </Button>
           </div>
           <div className="mt-4 sm:mt-6 text-center">
-            <Link to="/signup" className="text-sm sm:text-base text-purple-300 hover:text-purple-200 transition-colors duration-200 underline underline-offset-2 bg-transparent border-none cursor-pointer">
+            <Link to="/student/signup" className="text-sm sm:text-base text-purple-300 hover:text-purple-200 transition-colors duration-200 underline underline-offset-2 bg-transparent border-none cursor-pointer">
                 Don't have an account? Sign up
             </Link>
           </div>

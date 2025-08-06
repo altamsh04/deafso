@@ -22,7 +22,8 @@ function App() {
       path:'/',
       element:<HomePage/>
     }
-  ])
+  ]);
+  
   return (
       <>
         <RouterProvider router={Approuter}/>
