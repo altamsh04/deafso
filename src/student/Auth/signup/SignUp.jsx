@@ -158,7 +158,7 @@ export default function SignupPage() {
           {/* Link to Login */}
           <div className="mt-4 sm:mt-6 text-center">
             <Link
-              to="/api/v1/student/login"
+              to="/student/login"
               className="text-sm sm:text-base text-purple-300 hover:text-purple-200 underline underline-offset-2 transition-colors duration-200"
             >
               Already have an account? Log in
