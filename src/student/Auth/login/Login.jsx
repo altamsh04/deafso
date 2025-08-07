@@ -1,62 +1,3 @@
-// import { Button } from "@/components/ui/button";
-// import { Card, CardContent, CardHeader } from "@/components/ui/card";
-// import { Input } from "@/components/ui/input";
-// import { Link } from "react-router-dom";
-// import React, { useState, useEffect } from "react";
-
-// export default function LoginPage() {
-
-//   return (
-//     <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 dark:bg-gradient-to-br dark:from-black dark:via-gray-900 dark:to-black transition-all">
-//       <Card className="max-w-md w-full p-10 rounded-3xl shadow-2xl shadow-purple-900/40 bg-gray-850 dark:bg-gray-800">
-//         <CardHeader>
-//           <h2 className="text-4xl font-extrabold text-center text-white mb-6 tracking-wide">
-//             Login Here!
-//           </h2>
-//         </CardHeader>
-//         <CardContent>
-//           <form className="space-y-5">
-//             <div>
-//               <label htmlFor="email" className="block mb-2 text-sm font-semibold text-purple-300">
-//                 Email Address
-//               </label>
-//               <Input
-//                 id="email"
-//                 type="email"
-//                 placeholder="you@example.com"
-//                 required
-//                 className="bg-gray-900 border border-purple-700 text-white placeholder-purple-400 focus:ring-2 focus:ring-purple-500 focus:border-purple-500 rounded-lg"
-//               />
-//             </div>
-//             <div>
-//               <label htmlFor="password" className="block mb-2 text-sm font-semibold text-purple-300">
-//                 Password
-//               </label>
-//               <Input
-//                 id="password"
-//                 type="password"
-//                 placeholder="Your Password"
-//                 required
-//                 className="bg-gray-900 border border-purple-700 text-white placeholder-purple-400 focus:ring-2 focus:ring-purple-500 focus:border-purple-500 rounded-lg"
-//               />
-//             </div>
-//             <Button
-//               type="submit"
-//               className="w-full bg-purple-700 hover:bg-purple-800 active:bg-purple-900 text-white font-semibold rounded-lg shadow-lg transition duration-300"
-//             >
-//               Sign In
-//             </Button>
-//           </form>
-//           <Link to="/singup" className="text-right mt-2 text-white">
-//             Don't have account
-//           </Link>
-//         </CardContent>
-//       </Card>
-//     </div>
-//   );
-// }
-
-
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -78,7 +19,7 @@ export default function LoginPage() {
       <Card className="w-full max-w-sm sm:max-w-md lg:max-w-lg xl:max-w-xl p-6 sm:p-8 lg:p-10 rounded-2xl sm:rounded-3xl shadow-2xl shadow-purple-900/40 bg-gray-850 dark:bg-gray-800">
         <CardHeader className="pb-4 sm:pb-6">
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-center text-white mb-4 sm:mb-6 tracking-wide leading-tight">
-            Login Here!
+            Student Login!
           </h2>
         </CardHeader>
         <CardContent className="px-0">
@@ -119,7 +60,7 @@ export default function LoginPage() {
             </Button>
           </div>
           <div className="mt-4 sm:mt-6 text-center">
-            <Link to="/student/signup" className="text-sm sm:text-base text-purple-300 hover:text-purple-200 transition-colors duration-200 underline underline-offset-2 bg-transparent border-none cursor-pointer">
+            <Link to="/api/v1/student/signup" className="text-sm sm:text-base text-purple-300 hover:text-purple-200 transition-colors duration-200 underline underline-offset-2 bg-transparent border-none cursor-pointer">
                 Don't have an account? Sign up
             </Link>
           </div>
