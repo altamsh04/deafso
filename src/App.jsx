@@ -9,11 +9,15 @@ import Signup from './teacher/Auth/signUp/SignUp';
 function App() {
   const Approuter=createBrowserRouter([
     {
-      path:'/api/v1/student/login',
+      path:'/',
+      element:<HomePage/>
+    },
+    {
+      path:'/student/login',
       element:<LoginForm/>
     },
     {
-      path:'/api/v1/student/signup',
+      path:'/student/signup',
       element:<SignUp/>
     },
     {
@@ -21,15 +25,11 @@ function App() {
       element:<DashboardPage/>
     },
     {
-      path:'/',
-      element:<HomePage/>
-    },
-    {
-      path:'/api/v1/teacher/login',
+      path:'/teacher/login',
       element:<Login/>
     },
     {
-      path:'/api/v1/teacher/signup',
+      path:'/teacher/signup',
       element:<Signup/>
     }
   ]);
