@@ -9,9 +9,12 @@ export default function SignupPage() {
   const [form, setForm] = useState({
     name: "",
     email: "",
+    mobile:"",
+    password:"",
     standard: "",
     division: "",
     rollno: "",
+    password:""
   });
 
   const handleChange = (e) =>
@@ -27,7 +30,7 @@ export default function SignupPage() {
       <Card className="w-full max-w-sm sm:max-w-md lg:max-w-lg xl:max-w-xl p-6 sm:p-8 lg:p-10 rounded-2xl sm:rounded-3xl shadow-2xl shadow-purple-900/40 bg-gray-850 dark:bg-gray-800">
         <CardHeader className="pb-4 sm:pb-6">
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-center text-white mb-4 sm:mb-6 tracking-wide leading-tight">
-            SignUp Here!
+            Student SignUp!
           </h2>
         </CardHeader>
 
@@ -59,6 +62,38 @@ export default function SignupPage() {
                 type="email"
                 placeholder="you@example.com"
                 value={form.email}
+                onChange={handleChange}
+                required
+                className="w-full h-10 sm:h-11 lg:h-12 px-3 sm:px-4 bg-gray-900 border border-purple-700 text-white placeholder-purple-400 focus:ring-2 focus:ring-purple-500 focus:border-purple-500 rounded-lg text-sm sm:text-base transition-all duration-200"
+              />
+            </div>
+
+            {/* mobile Number */}
+            <div className="space-y-2">
+              <label htmlFor="mobile" className="block text-sm sm:text-base font-semibold text-purple-300">
+                Mobile Number
+              </label>
+              <Input
+                id="mobile"
+                placeholder="e.g., 23"
+                type={"number"}
+                value={form.mobile}
+                onChange={handleChange}
+                required
+                className="w-full h-10 sm:h-11 lg:h-12 px-3 sm:px-4 bg-gray-900 border border-purple-700 text-white placeholder-purple-400 focus:ring-2 focus:ring-purple-500 focus:border-purple-500 rounded-lg text-sm sm:text-base transition-all duration-200"
+              />
+            </div>
+
+            {/* password*/}
+            <div className="space-y-2">
+              <label htmlFor="password" className="block text-sm sm:text-base font-semibold text-purple-300">
+                Password
+              </label>
+              <Input
+                id="password"
+                placeholder="e.g., 23"
+                type={"password"}
+                value={form.password}
                 onChange={handleChange}
                 required
                 className="w-full h-10 sm:h-11 lg:h-12 px-3 sm:px-4 bg-gray-900 border border-purple-700 text-white placeholder-purple-400 focus:ring-2 focus:ring-purple-500 focus:border-purple-500 rounded-lg text-sm sm:text-base transition-all duration-200"
@@ -123,7 +158,7 @@ export default function SignupPage() {
           {/* Link to Login */}
           <div className="mt-4 sm:mt-6 text-center">
             <Link
-              to="/student/login"
+              to="/api/v1/student/login"
               className="text-sm sm:text-base text-purple-300 hover:text-purple-200 underline underline-offset-2 transition-colors duration-200"
             >
               Already have an account? Log in

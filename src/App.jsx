@@ -1,17 +1,19 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import LoginForm from './Auth/login/Login'
-import SignUp from './Auth/signup/SignUp';
-import DashboardPage from './ui/DashboardPage';
-import HomePage from './ui/HomePage';
+import LoginForm from './student/Auth/login/Login'
+import SignUp from './student/Auth/signup/SignUp';
+import DashboardPage from './student/ui/DashboardPage';
+import HomePage from './student/ui/HomePage';
+import Login from './teacher/Auth/login/Login';
+import Signup from './teacher/Auth/signUp/SignUp';
 
 function App() {
   const Approuter=createBrowserRouter([
     {
-      path:'/student/login',
+      path:'/api/v1/student/login',
       element:<LoginForm/>
     },
     {
-      path:'/student/signUp',
+      path:'/api/v1/student/signup',
       element:<SignUp/>
     },
     {
@@ -21,6 +23,14 @@ function App() {
     {
       path:'/',
       element:<HomePage/>
+    },
+    {
+      path:'/api/v1/teacher/login',
+      element:<Login/>
+    },
+    {
+      path:'/api/v1/teacher/signup',
+      element:<Signup/>
     }
   ]);
   
