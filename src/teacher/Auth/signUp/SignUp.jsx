@@ -4,6 +4,14 @@ import { Card, CardHeader, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
+import {z} from "zod"
+
+const signupSchema=z.object({
+    name:z.string().min(2,"Full name must be between 2 and 255 characters").max(255),
+    email:z.string().email("Please provide a valid email address"),
+    mobile:z.string().regex(/^[0-9]{10}$/,"Mobile Number must be 10 Digit"),
+    password:z.string().min(6,"Password must be at least 6 characters long"),
+});
 
 export default function Signup() {
   const [form, setForm] = useState({
@@ -12,12 +20,32 @@ export default function Signup() {
     mobile:"",
     password:"",
   });
-
+  const [err,setErr]=useState({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
+    
   const handleChange = (e) =>
     setForm({ ...form, [e.target.id]: e.target.value });
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setErr({});
+    const res=signupSchema.safeParse(form);
+    if(!res.success){
+      const fielderr = {};
+      res.error.errors.forEach((err) => {
+        fielderr[err.path[0]] = err.message;
+      });
+      setErr(fielderr);
+      return;
+    }
+    try {
+      
+    } catch (error) {
+      console.log(error);
+      
+    }finally{
+      setIsSubmitting(false);
+    }
     console.log("Sign-up data:", form); // replace with real sign-up logic
   };
 
@@ -31,7 +59,7 @@ export default function Signup() {
         </CardHeader>
 
         <CardContent className="px-0">
-          <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-5 lg:space-y-6">
+          <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-5 lg:space-y-6" noValidate>
             {/* Name */}
             <div className="space-y-2">
               <label htmlFor="name" className="block text-sm sm:text-base font-semibold text-purple-300">
@@ -46,6 +74,8 @@ export default function Signup() {
                 required
                 className="w-full h-10 sm:h-11 lg:h-12 px-3 sm:px-4 bg-gray-900 border border-purple-700 text-white placeholder-purple-400 focus:ring-2 focus:ring-purple-500 focus:border-purple-500 rounded-lg text-sm sm:text-base transition-all duration-200"
               />
+              {err.name && <p className="text-xs text-red-600 mt-1">{err.name}</p>}
+
             </div>
 
             {/* Email */}
@@ -62,6 +92,8 @@ export default function Signup() {
                 required
                 className="w-full h-10 sm:h-11 lg:h-12 px-3 sm:px-4 bg-gray-900 border border-purple-700 text-white placeholder-purple-400 focus:ring-2 focus:ring-purple-500 focus:border-purple-500 rounded-lg text-sm sm:text-base transition-all duration-200"
               />
+              {err.email && <p className="text-xs text-red-600 mt-1">{err.email}</p>}
+
             </div>
 
             {/* mobile Number */}
@@ -72,12 +104,14 @@ export default function Signup() {
               <Input
                 id="mobile"
                 placeholder="e.g., 23"
-                type={"number"}
+                type={"text"}
                value={form.mobile}
                 onChange={handleChange}
                 required
                 className="w-full h-10 sm:h-11 lg:h-12 px-3 sm:px-4 bg-gray-900 border border-purple-700 text-white placeholder-purple-400 focus:ring-2 focus:ring-purple-500 focus:border-purple-500 rounded-lg text-sm sm:text-base transition-all duration-200"
               />
+              {err.mobile && <p className="text-xs text-red-600 mt-1">{err.mobile}</p>}
+
             </div>
 
             {/* password*/}
@@ -94,6 +128,8 @@ export default function Signup() {
                 required
                 className="w-full h-10 sm:h-11 lg:h-12 px-3 sm:px-4 bg-gray-900 border border-purple-700 text-white placeholder-purple-400 focus:ring-2 focus:ring-purple-500 focus:border-purple-500 rounded-lg text-sm sm:text-base transition-all duration-200"
               />
+              {err.password && <p className="text-xs text-red-600 mt-1">{err.password}</p>}
+
             </div>
               
             {/* Submit */}

@@ -1,17 +1,46 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import React, { useState } from "react";
+import React, { use, useState } from "react";
 import { Link } from "react-router-dom";
+import {z} from "zod";
+
+const loginSchema=z.object({
+  email:z.string().email("Please provide a valid email address"),
+  password:z.string().min(6,"Password must be at least 6 characters long")
+});
 
 export default function LoginPage() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [form ,setForm]=useState({
+    email:"",
+    password:""
+  });
+  const [err,setErr]=useState({});
+  const [isSubmitting,setIsSubmitting]=useState();
+
+  const handleChange=(e)=>{
+      setForm({...form ,[e.target.id]:e.target.value});
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Handle login logic here
-    console.log("Login attempted with:", { email, password });
+    setIsSubmitting(true);
+      const res=loginSchema.safeParse(form);
+      if (!res.success) {
+        const fieldErr={};
+        res.error.errors.forEach((error) => {
+        fieldErr[error.path[0]] = error.message;
+        });
+      setErr(fieldErr);
+      return;
+      }
+    try {
+      //server request
+    } catch (error) {
+      console.log(error);
+    }finally{
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -32,11 +61,12 @@ export default function LoginPage() {
                 id="email"
                 type="email"
                 placeholder="you@example.com"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                value={form.email}
+                onChange={handleChange}
                 required
                 className="w-full h-10 sm:h-11 lg:h-12 px-3 sm:px-4 bg-gray-900 border border-purple-700 text-white placeholder-purple-400 focus:ring-2 focus:ring-purple-500 focus:border-purple-500 rounded-lg text-sm sm:text-base transition-all duration-200"
               />
+              {err.email && <p className="text-xs text-red-600 mt-1">{err.email}</p>}
             </div>
             <div className="space-y-2">
               <label htmlFor="password" className="block text-sm sm:text-base font-semibold text-purple-300">
@@ -46,11 +76,12 @@ export default function LoginPage() {
                 id="password"
                 type="password"
                 placeholder="Your Password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                value={form.password}
+                onChange={handleChange}
                 required
                 className="w-full h-10 sm:h-11 lg:h-12 px-3 sm:px-4 bg-gray-900 border border-purple-700 text-white placeholder-purple-400 focus:ring-2 focus:ring-purple-500 focus:border-purple-500 rounded-lg text-sm sm:text-base transition-all duration-200"
               />
+              {err.password && <p className="text-xs text-red-600 mt-1">{err.password}</p>}
             </div>
             <Button
               onClick={handleSubmit}
